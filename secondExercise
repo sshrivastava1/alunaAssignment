@@ -1,0 +1,103 @@
+import static io.restassured.RestAssured.given;
+import static org.hamcrest.Matchers.equalTo;
+import static org.junit.Assert.assertEquals;
+
+import org.junit.Test;
+
+public class PatientIdentityServiceTest {
+
+    private static final String BASE_URL = "http://your-service-url/identity";
+
+    @Test
+    public void testCreateAndRetrievePatientIdentity() {
+        // Create patient identifier
+        given()
+            .contentType("application/json")
+            .body("{\"identifier\": \"JUGO1940M\"}")
+            .when()
+            .post(BASE_URL)
+            .then()
+            .statusCode(200);
+
+        // Retrieve patient data
+        String response = given()
+            .queryParam("identifier", "JUGO1940M")
+            .when()
+            .get(BASE_URL)
+            .then()
+            .statusCode(200)
+            .extract()
+            .asString();
+
+        // Verify response data
+        assertEquals("{\"name\":\"Juan\",\"dob\":\"1940-12-01\",\"gender\":\"Male\"}", response);
+        
+    }
+    
+   @Test
+    public void testCreateIdentity() {
+        // Given
+        String identifier = "JUGO1940M";
+
+        // When
+        int statusCode = given().contentType("application/json")
+                .body("{\"identifier\": \"" + identifier + "\"}")
+                .post(BASE_URL)
+                .then()
+                .statusCode(500)
+                .extract().statusCode();
+
+        // Then
+        assertEquals(500, statusCode);
+    }
+    
+    @Test
+    public void testRetrieveIdentity() {
+        // Given
+        String identifier = "JUGO1940M";
+
+        // When
+        String name = given().param("identifier", identifier)
+                .get(BASE_URL)
+                .then()
+                .statusCode(200)
+                .body("name", equalTo("Juan Gomez"))
+                .body("dob", equalTo("1940-12-01"))
+                .body("gender", equalTo("Male"))
+                .extract().path("name");
+
+        // Then
+        assertEquals("Juan Gomez", name);
+    }
+
+    @Test
+    public void testCreatePatientIdentityWithExistingIdentifier() {
+        // Create patient identifier
+        given()
+            .contentType("application/json")
+            .body("{\"identifier\": \"JUGO1940M\"}")
+            .when()
+            .post(BASE_URL)
+            .then()
+            .statusCode(200);
+            
+       given()
+            .contentType("application/json")
+            .body("{\"identifier\": \"JUGO1940M\"}")
+            .when()
+            .post(BASE_URL)
+            .then()
+            .statusCode(500);
+
+
+        // Try to create same identifier again
+        given()
+            .contentType("application/json")
+            .body("{\"identifier\": \"JUGO1940M\"}")
+            .when()
+            .post(BASE_URL)
+            .then()
+            .statusCode(409)
+            .body("error", equalTo("The record already exists"));
+    }
+}
