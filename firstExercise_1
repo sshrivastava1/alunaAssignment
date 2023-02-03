@@ -1,0 +1,18 @@
+public class PatientIdentifier {
+  public static String generateIdentifier(String name, String dob, String gender) {
+    String[] nameParts = name.split(" ");
+    String firstName = nameParts[0];
+    String lastName = nameParts[1];
+    String birthYear = dob.substring(0, 4);
+    String firstLetterOfGender = gender.substring(0, 1);
+
+    return (firstName.substring(0, 2) + lastName.substring(0, 2) + birthYear + firstLetterOfGender).toUpperCase();
+  }
+
+  public static void main(String[] args) {
+    String name = "Juan Gomez";
+    String dob = "1940-12-01";
+    String gender = "Male";
+    System.out.println(generateIdentifier(name, dob, gender));
+  }
+}
