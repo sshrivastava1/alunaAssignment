@@ -1,0 +1,57 @@
+Verify the title of the page is present and correctly displayed
+
+Verify the login button displayed on the header of the page
+
+Verify the Figma Logo is displayed correctly
+
+Verify the welcome statement on the side of the logo - "Welcome to Figma!"
+
+Verify the connectivity with the google account, if the user clicks on Continue with Google, Pop up window should open where the user can sign up for a google account
+
+Verify the Sign Up with Email button
+
+Verify the signing up with email window, when the user clicks on Sign up with email, the window should open and the title - "Create an account to collaborate on <Company_Name>", Continue with google 
+
+Verify the signing up with the email window, Email, and Password field, create an account button, use a single sign-on, and the login button
+
+Verify signing up with email ID - provide Email and password, and click on Create account button. the user should be able to sign up.
+
+Verify the welcome email on signing up with Email ID
+
+Verify the "Single sign-on" link on the Sign up with email window - The user should be able to log in after providing the SO credentials
+
+Verify the login button at the bottom of the Sign up with email window, if clicked on it should redirect to the log in pop up window
+
+Verify the frame states - "Create an account to edit and collaborate on this file."
+
+Verify the Search Patient by Identifier Screen is displayed with a text field and a Find Patient button
+
+Verify the Find Patient is disabled by default
+
+Verify the Find Patient is enabled when the user inputs a value in the text field
+
+Verify the patient information is displayed correctly when a valid identifier is entered and the Find Patient button is clicked
+
+Verify an error message is displayed when an invalid identifier is entered and the Find Patient button is clicked
+
+Verify that the error message disappears when the user corrects the input in the text field
+
+Verify that clicking the logout button logs the user out of the dashboard.
+
+Verify that the login page is accessible: The test case should check if the URL for the login page is accessible and the page is properly displayed.
+
+Check for the presence of required fields: The test case should validate that the login page has the necessary fields such as username, password and submit button.
+
+Invalid login credentials: The test case should check if the user is unable to log in with an invalid username or password. The system should return an error message indicating that the login failed.
+
+Blank login fields: The test case should check if the user is unable to log in when either the username or password fields are left blank. The system should return an error message indicating that the fields are required.
+
+Valid login credentials: The test case should check if the user is able to log in with a valid username and password. The system should redirect the user to the appropriate page.
+
+Forgotten password: The test case should verify if the forgotten password functionality is working correctly. The user should be able to reset their password by providing their email or username.
+
+Logout functionality: The test case should verify if the user is able to log out from the system. The logout button should properly function and the user should be redirected to the login page.
+
+Session timeout: The test case should verify if the system logs the user out after a certain amount of time of inactivity. The system should redirect the user to the login page.
+
+User account lock-out: The test case should verify if the system locks the user out after several unsuccessful login attempts. The user should not be able to log in until their account is unlocked.
