@@ -1,0 +1,20 @@
+import static io.restassured.RestAssured.given;
+import static org.hamcrest.CoreMatchers.equalTo;
+
+import org.junit.Test;
+
+public class PatientIdentifierApiTest {
+
+    @Test
+    public void testGetPatientIdentifierSuccess() {
+        given()
+            .queryParam("name", "Juan Gomez")
+            .queryParam("dob", "1940-12-01")
+            .queryParam("gender", "Male")
+        .when()
+            .get("/patients/identifier")
+        .then()
+            .statusCode(200)
+            .body("identifier", equalTo("JUGO1940M"));
+    }
+}
